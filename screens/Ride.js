@@ -23,8 +23,8 @@ export default class RideScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bikeId: '',
-      userId: '',
+      bikeId: 'BICY002',
+      userId: 'UID002',
       domState: 'normal',
       hasCameraPermissions: null,
       scanned: false,
@@ -81,18 +81,16 @@ export default class RideScreen extends Component {
             ToastAndroid
           );*/}
 
-          {
-            /* ToastAndroid.show(
+          {/* ToastAndroid.show(
             'You have rented the bike for next 1 hour. Enjoy your ride!!',
              SHORT
-          );*/
-        }
-
+          );*/}
+          alert('You have rented the bike for next 1 hour. Enjoy your ride!!')
           ToastAndroid.show(
             'You have rented the bike for next 1 hour. Enjoy your ride!!',
             ToastAndroid.SHORT
           );
-          
+
           this.setState({
             bikeAssigned: true,
           });
@@ -100,13 +98,13 @@ export default class RideScreen extends Component {
           var { bikeType, userName } = this.state;
 
           this.returnBike(bikeId, userId, bikeType, userName);
-
+          alert( 'We hope you enjoyed your ride')
           //For Android users only
           ToastAndroid.show(
             'We hope you enjoyed your ride',
             ToastAndroid.SHORT
           );
-            
+
           this.setState({
             bikeAssigned: false,
           });
@@ -126,7 +124,6 @@ export default class RideScreen extends Component {
           });
         });
       });
-      
   };
 
   getUserDetails = (userId) => {
@@ -142,7 +139,6 @@ export default class RideScreen extends Component {
           });
         });
       });
-     
   };
 
   assignBike = async (bikeId, userId, bikeType, userName) => {
@@ -163,7 +159,7 @@ export default class RideScreen extends Component {
     db.collection('users').doc(userId).update({
       bike_assigned: true,
     });
-    alert("You have rented the bike for next 1 hour. Enjoy your ride!!");
+
     // Updating local state
     this.setState({
       bikeId: '',
@@ -188,7 +184,7 @@ export default class RideScreen extends Component {
     db.collection('users').doc(userId).update({
       bike_assigned: false,
     });
- alert("We hope you enjoyed your ride")
+
     // Updating local state
     this.setState({
       bikeId: '',
